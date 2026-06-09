@@ -70,7 +70,7 @@ const RESPONSES: Record<string, string> = {
   projects:
     "Featured Projects:\n" +
     "  01 Shipment Management System\n" +
-    "  02 Vendor Management Portal\n" +
+    "  02 ToolstackAi\n" +
     "  03 AI Support Assistant\n\n" +
     "Type 'project 1', 'project 2', or 'project 3' to view full details.",
   "project 1":
@@ -81,12 +81,12 @@ const RESPONSES: Record<string, string> = {
     "├─ Telemetry   : -40% average coordination time, 94% on-time delivery rate.\n" +
     "└─ Tech Stack  : React, Node.js, Express, MongoDB, Socket.io, Mapbox",
   "project 2":
-    "Vendor Management Portal\n" +
-    "├─ Description : Centralized vendor onboarding, procurement, and compliance tracking.\n" +
-    "├─ Problem     : Procurement teams were managing vendor data across spreadsheets.\n" +
-    "├─ Solution    : Designed role-based portal with document checks and PO generation.\n" +
-    "├─ Telemetry   : Consolidated 200+ vendor records, cut onboarding by 60%.\n" +
-    "└─ Tech Stack  : React, TypeScript, Node.js, PostgreSQL, Prisma, AWS S3",
+    "ToolstackAi\n" +
+    "├─ Description : AI-powered developer toolkit platform for discovering AI dev tools.\n" +
+    "├─ Problem     : Developers struggle to navigate the rapidly growing AI tools ecosystem.\n" +
+    "├─ Solution    : Built curated platform with comparisons, pricing, and integration guides.\n" +
+    "├─ Telemetry   : Helped 500+ devs discover AI tools, cut research time by 65%.\n" +
+    "└─ Tech Stack  : Next.js, TypeScript, Node.js, PostgreSQL, Prisma, Vercel",
   "project 3":
     "AI Support Assistant\n" +
     "├─ Description : Intelligent ticket management system with automated routing.\n" +

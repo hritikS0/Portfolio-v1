@@ -14,6 +14,7 @@
   --animate-twinkle-slow: twinkle 10s ease-in-out infinite alternate-reverse;
   --animate-streaks: streaks 40s linear infinite;
   --animate-streaks-slow: streaks 80s linear infinite;
+  --animate-glitch: glitch 0.2s ease-in-out;
 
   @keyframes twinkle {
     0% { opacity: 0.15; transform: scale(0.95); }
@@ -22,6 +23,14 @@
   @keyframes streaks {
     0% { background-position: 0 0; }
     100% { background-position: -4000px 4000px; }
+  }
+  @keyframes glitch {
+    0% { transform: translate(0); text-shadow: none; }
+    20% { transform: translate(-2px, 1px); text-shadow: -2px 0 rgba(255,0,80,0.5), 2px 0 rgba(0,200,255,0.5); }
+    40% { transform: translate(2px, -1px); text-shadow: 2px 0 rgba(255,0,80,0.5), -2px 0 rgba(0,200,255,0.5); }
+    60% { transform: translate(-1px, 2px); text-shadow: -1px 0 rgba(255,0,80,0.5), 1px 0 rgba(0,200,255,0.5); }
+    80% { transform: translate(1px, -2px); text-shadow: 1px 0 rgba(0,200,255,0.5), -1px 0 rgba(255,0,80,0.5); }
+    100% { transform: translate(0); text-shadow: none; }
   }
 }
 

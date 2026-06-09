@@ -15,7 +15,11 @@ export function OrbitMap() {
   const baseId = useId()
 
   return (
-    <div ref={ref} className="relative flex items-center justify-center" aria-hidden="true">
+    <div
+      ref={ref}
+      className="relative flex items-center justify-center"
+      aria-hidden="true"
+    >
       <svg
         viewBox="0 0 400 400"
         className="max-w-[400px] h-auto select-none"
@@ -24,19 +28,63 @@ export function OrbitMap() {
       >
         <defs>
           {orbits.map((o, i) => (
-            <linearGradient key={i} id={`${baseId}-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient
+              key={i}
+              id={`${baseId}-${i}`}
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
               <stop offset="0%" stopColor="#3B82F6" stopOpacity={o.opacity} />
-              <stop offset="50%" stopColor="#3B82F6" stopOpacity={o.opacity * 0.5} />
-              <stop offset="100%" stopColor="#3B82F6" stopOpacity={o.opacity * 0.3} />
+              <stop
+                offset="50%"
+                stopColor="#3B82F6"
+                stopOpacity={o.opacity * 0.5}
+              />
+              <stop
+                offset="100%"
+                stopColor="#3B82F6"
+                stopOpacity={o.opacity * 0.3}
+              />
             </linearGradient>
           ))}
         </defs>
 
-        <circle cx="200" cy="200" r="2" fill="#3B82F6" opacity={0.6} />
+        <motion.circle
+          cx="200"
+          cy="200"
+          r="2"
+          fill="#3B82F6"
+          initial={{ opacity: 0.6, scale: 1 }}
+          animate={
+            isInView
+              ? {
+                  opacity: [0.6, 1, 0.6],
+                  scale: [1, 1.5, 1],
+                }
+              : { opacity: 0.6, scale: 1 }
+          }
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        />
         <circle cx="200" cy="200" r="7" fill="#3B82F6" opacity={0.08} />
 
-        <line x1="35" y1="200" x2="365" y2="200" stroke="#1A1D24" strokeWidth="0.5" />
-        <line x1="200" y1="40" x2="200" y2="360" stroke="#1A1D24" strokeWidth="0.5" />
+        <line
+          x1="35"
+          y1="200"
+          x2="365"
+          y2="200"
+          stroke="#1A1D24"
+          strokeWidth="0.5"
+        />
+        <line
+          x1="200"
+          y1="40"
+          x2="200"
+          y2="360"
+          stroke="#1A1D24"
+          strokeWidth="0.5"
+        />
 
         {orbits.map((orbit, i) => (
           <motion.ellipse
@@ -48,7 +96,9 @@ export function OrbitMap() {
             stroke={`url(#${baseId}-${i})`}
             strokeWidth="0.5"
             initial={false}
-            animate={isInView ? { rotate: orbit.direction * 360 } : { rotate: 0 }}
+            animate={
+              isInView ? { rotate: orbit.direction * 360 } : { rotate: 0 }
+            }
             transition={{
               duration: orbit.duration,
               repeat: Infinity,

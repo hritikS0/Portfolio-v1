@@ -1,23 +1,66 @@
+export interface SkillItem {
+  name: string
+  level?: "proficient" | "intermediate"
+}
+
 export interface SkillCategory {
   title: string
-  skills: string[]
+  skills: SkillItem[]
 }
 
 export const skillCategories: SkillCategory[] = [
   {
+    title: "Languages",
+    skills: [
+      { name: "TypeScript", level: "proficient" },
+      { name: "JavaScript", level: "proficient" },
+      { name: "Python", level: "intermediate" },
+      { name: "HTML5" },
+      { name: "CSS3" },
+    ],
+  },
+  {
     title: "Frontend",
-    skills: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "MUI", "Zustand"],
+    skills: [
+      { name: "React" },
+      { name: "Next.js" },
+      { name: "Tailwind CSS" },
+      { name: "MUI" },
+      { name: "Zustand" },
+    ],
   },
   {
     title: "Backend",
-    skills: ["Node.js", "Express.js", "Python", "REST APIs", "JWT", "OAuth", "WebSockets"],
+    skills: [
+      { name: "Node.js" },
+      { name: "Express.js" },
+      { name: "REST APIs" },
+      { name: "JWT" },
+      { name: "OAuth" },
+      { name: "WebSockets" },
+    ],
   },
   {
     title: "Database",
-    skills: ["MongoDB", "PostgreSQL", "Prisma", "Mongoose", "SQL", "Redis"],
+    skills: [
+      { name: "MongoDB" },
+      { name: "PostgreSQL" },
+      { name: "Prisma" },
+      { name: "Mongoose" },
+      { name: "SQL" },
+      { name: "Redis" },
+    ],
   },
   {
     title: "Infrastructure",
-    skills: ["Docker", "Git", "CI/CD", "Vercel", "Render", "AWS S3", "Linux"],
+    skills: [
+      { name: "Docker" },
+      { name: "Git" },
+      { name: "CI/CD" },
+      { name: "Vercel" },
+      { name: "Render" },
+      { name: "AWS S3" },
+      { name: "Linux" },
+    ],
   },
 ]

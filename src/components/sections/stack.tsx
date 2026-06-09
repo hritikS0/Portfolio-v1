@@ -47,10 +47,13 @@ export function Stack() {
                     <div className="flex flex-wrap gap-1.5 pt-1">
                       {category.skills.map((skill) => (
                         <span
-                          key={skill}
-                          className="inline-flex items-center rounded border border-border/60 bg-surface/50 px-2 py-0.5 text-xs text-muted hover:text-foreground hover:border-accent/40 transition-colors"
+                          key={skill.name}
+                          className="inline-flex items-center gap-1.5 rounded border border-border/60 bg-surface/50 px-2 py-0.5 text-xs text-muted hover:text-foreground hover:border-accent/40 transition-colors"
                         >
-                          {skill}
+                          {skill.name}
+                          {skill.level && (
+                            <span className={`size-1.5 rounded-full shrink-0 ${skill.level === "proficient" ? "bg-accent" : "bg-yellow-500/70"}`} />
+                          )}
                         </span>
                       ))}
                     </div>

@@ -5,6 +5,7 @@ import { Navbar } from "@/src/components/layout/navbar"
 import { Footer } from "@/src/components/layout/footer"
 import { AnimationProvider } from "@/src/components/providers/animation-provider"
 import { Background } from "@/src/components/ui/background"
+import { CursorTrail } from "@/src/components/ui/cursor-trail"
 import { Analytics } from "@vercel/analytics/react"
 
 const geistSans = Geist({
@@ -41,6 +42,7 @@ export default function RootLayout({
       <body className="bg-background text-foreground antialiased">
         <AnimationProvider>
           <Background />
+          <CursorTrail />
           <a
             href="#main-content"
             className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-md"
