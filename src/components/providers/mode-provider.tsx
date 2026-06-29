@@ -92,7 +92,7 @@ interface ModeContextType {
 const ModeContext = createContext<ModeContextType | undefined>(undefined)
 
 export function ModeProvider({ children }: { children: React.ReactNode }) {
-  const [mode, setModeState] = useState<ViewMode>("developer")
+  const [mode, setModeState] = useState<ViewMode>("recruiter")
   const [activeFile, setActiveFile] = useState<string>("README.md")
   const [openTabs, setOpenTabs] = useState<string[]>(["README.md"])
 
