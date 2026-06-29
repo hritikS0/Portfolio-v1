@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import { Navbar } from "@/src/components/layout/navbar"
 import { Footer } from "@/src/components/layout/footer"
+import { ModeProvider } from "@/src/components/providers/mode-provider"
 import { AnimationProvider } from "@/src/components/providers/animation-provider"
 import { Background } from "@/src/components/ui/background"
 import { CursorTrail } from "@/src/components/ui/cursor-trail"
@@ -40,20 +41,22 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <body className="bg-background text-foreground antialiased">
-        <AnimationProvider>
-          <Background />
-          <CursorTrail />
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-md"
-          >
-            Skip to content
-          </a>
-          <Navbar />
-          <main id="main-content">{children}</main>
-          <Footer />
-        </AnimationProvider>
-        <Analytics />
+        <ModeProvider>
+          <AnimationProvider>
+            <Background />
+            <CursorTrail />
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-md"
+            >
+              Skip to content
+            </a>
+            <Navbar />
+            <main id="main-content">{children}</main>
+            <Footer />
+          </AnimationProvider>
+          <Analytics />
+        </ModeProvider>
       </body>
     </html>
   )

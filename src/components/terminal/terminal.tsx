@@ -15,13 +15,6 @@ export function Terminal() {
       const focused = document.activeElement
       if (focused === el) return
 
-      if (e.key.toLowerCase() === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault()
-        document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" })
-        el.focus({ preventScroll: true })
-        return
-      }
-
       if (e.key === "Escape") {
         el.blur()
         return
