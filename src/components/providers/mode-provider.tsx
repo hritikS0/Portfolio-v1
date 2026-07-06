@@ -24,6 +24,7 @@ export const virtualFileSystem: FileSystemNode[] = [
         type: "directory",
         children: [
           { name: "toolstack-ai.md", path: "src/projects/toolstack-ai.md", type: "file" },
+          { name: "android-home-lab.md", path: "src/projects/android-home-lab.md", type: "file" },
         ],
       },
       {

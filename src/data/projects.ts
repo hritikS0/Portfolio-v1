@@ -36,6 +36,35 @@ export const projects: Project[] = [
     code: "https://github.com/hritikS0/ToolstackAi",
   },
   {
+    id: "android-home-lab",
+    title: "Android Home Lab Server",
+    description:
+      "Repurposed legacy Android hardware into an ultra-low-power, self-hosted Linux server environment using Termux to host persistent node services.",
+    problem:
+      "Hosting custom backend node services and automated CI/CD pipelines on traditional cloud platforms incurs recurring infrastructure costs and potential public firewall port exposure.",
+    solution:
+      "Established a strict zero-trust private network mesh utilizing Tailscale for secure SSH remote administration, and automated deployment workflows via custom GitHub Actions pipelines with PM2 runners.",
+    technologies: [
+      "Linux",
+      "Termux",
+      "Tailscale",
+      "GitHub Actions",
+      "PM2",
+      "CI/CD",
+      "Node.js",
+      "Docker",
+    ],
+    tradeoffs:
+      "Chose Termux on ARM Android hardware over standard cloud VPS hosting to eliminate recurring monthly server infrastructure costs, accepting lower peak CPU compute throughput for self-hosted microservices.",
+    architecture:
+      "Self-hosted ARM Linux node running inside Android hardware via Termux containerization. Private networking is routed through an encrypted zero-trust Tailscale mesh network without opening public firewall ports.",
+    performance:
+      "Drove localized infrastructure costs down to zero. Shifting code-to-production deployment execution speeds from minutes to under 45 seconds using PM2 runners.",
+    lessons:
+      "Learned that mobile hardware battery management systems can throttle CPU frequencies under persistent node server loads. Solved by configuring custom wake-locks and background battery optimization overrides in Android OS.",
+    code: "https://github.com/hritikS0/homelab-music",
+  },
+  {
     id: "shailshuta-logistics",
     title: "Shailshuta Logistics",
     description:

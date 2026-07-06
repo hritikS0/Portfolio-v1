@@ -26,7 +26,7 @@ export function Footer() {
             LinkedIn
           </a>
           <a
-            href="/resume.pdf"
+            href="/resume-hritik.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-muted hover:text-foreground transition-colors"

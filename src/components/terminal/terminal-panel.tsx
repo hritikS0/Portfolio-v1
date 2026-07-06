@@ -38,7 +38,7 @@ const RESPONSES: Record<string, string> = {
     "experience  Deployment timeline logs\n" +
     "stack       System architecture layers\n" +
     "contact     Inspect .env contact values\n" +
-    "resume      Open résumé PDF\n" +
+    "resume      Open resume-hritik.pdf\n" +
     "github      Open GitHub link\n" +
     "linkedin    Open LinkedIn link\n" +
     "recruiter   Switch page layout to Recruiter Mode\n" +
@@ -53,10 +53,10 @@ const RESPONSES: Record<string, string> = {
     " ( o.o )    ----------------\n" +
     "  > ^ <     Name       : Hritik Sharma\n" +
     "            Role       : Full Stack Engineer\n" +
-    "            Experience : 1+ Years\n" +
-    "            Projects   : 3+\n" +
+    "            Experience : TechPlek Technologies Intern\n" +
+    "            Projects   : 4+ (Full-Stack & Home Lab)\n" +
     "            Location   : New Delhi, India\n" +
-    "            Stack      : MERN & PERN Specialist\n" +
+    "            Stack      : MERN & PERN / AI RAG\n" +
     "            Editor     : VS Code / Neovim\n" +
     "            Terminal   : Ghostty\n" +
     "            Status     : Ready for opportunities\n\n" +
@@ -327,7 +327,7 @@ export function TerminalPanel({ onReady, onFocusChange }: TerminalPanelProps) {
 
       // Contextual navigation
       const navActions: Record<string, () => void> = {
-        resume: () => window.open("/resume.pdf", "_blank"),
+        resume: () => window.open("/resume-hritik.pdf", "_blank"),
         github: () => window.open("https://github.com/hritikS0", "_blank"),
         linkedin: () => window.open("https://linkedin.com/in/hritik-sharma-91336430b/", "_blank"),
         projects: () => {

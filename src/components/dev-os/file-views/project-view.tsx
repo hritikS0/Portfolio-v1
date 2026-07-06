@@ -54,6 +54,14 @@ export function ProjectView({ filePath }: ProjectViewProps) {
         { id: "nlp", label: "Prisma Layer", x: 330, y: 130, w: 100, h: 40, details: "Prisma ORM schema orchestrating connection pools and transaction management layers." },
       ]
     }
+    if (projId === "android-home-lab") {
+      return [
+        { id: "client", label: "Termux ARM Node", x: 30, y: 80, w: 110, h: 40, details: "Repurposed legacy Android ARM device hosting Linux container environment via Termux." },
+        { id: "gateway", label: "Tailscale Mesh", x: 180, y: 80, w: 110, h: 40, details: "Encrypted zero-trust private network mesh securing SSH remote access without open firewall ports." },
+        { id: "db", label: "PM2 Runners", x: 330, y: 30, w: 100, h: 40, details: "Process manager executing persistent backend node microservices and auto-restart loops." },
+        { id: "nlp", label: "GitHub Actions", x: 330, y: 130, w: 110, h: 40, details: "Automated CI/CD deployment pipeline triggering localized builds in under 45 seconds." },
+      ]
+    }
     // pdooh-platform
     return [
       { id: "client", label: "React Admin Panel", x: 30, y: 80, w: 100, h: 40, details: "Admin dashboard interface for centralized device playlist and media schedule configurations." },
@@ -83,24 +91,27 @@ export function ProjectView({ filePath }: ProjectViewProps) {
           <div className="text-[10px] text-muted uppercase font-bold">TELEMETRY / METRIC</div>
           <div className="text-foreground text-sm font-bold font-sans">
             {project.id === "toolstack-ai" && "TTFT Latency: <85ms"}
-            {project.id === "shipment-manager" && "Fleet Latency: 180ms"}
-            {project.id === "ai-support" && "L1 Tickets Solved: 55%"}
+            {project.id === "android-home-lab" && "Deploy Speed: <45s"}
+            {project.id === "shailshuta-logistics" && "Sync Latency: <200ms"}
+            {project.id === "pdooh-platform" && "Reliability: 99.98%"}
           </div>
         </div>
         <div className="space-y-1 border-t sm:border-t-0 sm:border-l border-border pt-2 sm:pt-0 sm:pl-4">
           <div className="text-[10px] text-muted uppercase font-bold">OPTIMIZATION IMPACT</div>
           <div className="text-accent text-sm font-bold font-sans">
             {project.id === "toolstack-ai" && "Ingestion: 12.8s ➔ 3.1s"}
-            {project.id === "shipment-manager" && "Fleet Coord: -40%"}
-            {project.id === "ai-support" && "Resolution: 18h ➔ 2.5h"}
+            {project.id === "android-home-lab" && "Hosting Cost: $0/mo"}
+            {project.id === "shailshuta-logistics" && "Response Time: -15%"}
+            {project.id === "pdooh-platform" && "Memory Usage: -30%"}
           </div>
         </div>
         <div className="space-y-1 border-t sm:border-t-0 sm:border-l border-border pt-2 sm:pt-0 sm:pl-4">
           <div className="text-[10px] text-muted uppercase font-bold">INFRASTRUCTURE</div>
           <div className="text-foreground text-sm font-bold font-sans">
-            {project.id === "toolstack-ai" && "PGVector Cluster"}
-            {project.id === "shipment-manager" && "Redis Pub/Sub Sync"}
-            {project.id === "ai-support" && "HuggingFace Local Queue"}
+            {project.id === "toolstack-ai" && "PGVector / NVIDIA NIM"}
+            {project.id === "android-home-lab" && "Termux / Tailscale Mesh"}
+            {project.id === "shailshuta-logistics" && "Prisma / PgBouncer"}
+            {project.id === "pdooh-platform" && "Raspberry Pi / AWS S3"}
           </div>
         </div>
       </div>

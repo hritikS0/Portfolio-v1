@@ -87,9 +87,9 @@ export function Hero() {
             variants={itemVariants}
             className="text-sm sm:text-base text-muted max-w-xl mx-auto leading-relaxed"
           >
-            MERN &amp; PERN Stack Developer building high-density,
-            low-latency applications with TypeScript, React, Node.js, and
-            PostgreSQL.
+            Performance-driven Full-Stack Developer architecting scalable
+            production applications with the MERN &amp; PERN stack, TypeScript,
+            Next.js, PostgreSQL, and RAG-based AI workflows.
           </motion.p>
 
           <motion.div
