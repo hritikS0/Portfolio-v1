@@ -175,7 +175,7 @@ export function SystemInspector() {
                 />
               </div>
             </div>
-          ) : (
+          ) : project.id === "android-home-lab" ? (
             <div className="flex flex-col h-full w-full bg-[#07090e] border-none overflow-hidden">
               {/* Mock Browser Header */}
               <div className="bg-[#0A0D14] px-4 py-2 border-b border-border flex items-center gap-3 select-none shrink-0 text-xs text-muted">
@@ -205,6 +205,40 @@ export function SystemInspector() {
                   playsInline
                   className="w-full h-full object-contain bg-black"
                 />
+              </div>
+            </div>
+          ) : (
+            <div className="bg-[#0A0D14] h-full flex flex-col items-center justify-center p-6 text-center select-none font-mono text-xs text-muted/60 space-y-5 border-l border-border/20">
+              <div className="size-16 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center text-2xl animate-pulse">
+                🔒
+              </div>
+
+              <div className="space-y-2 max-w-sm">
+                <h3 className="text-red-400 font-bold tracking-wider uppercase text-[11px]">
+                  CONFIDENTIAL // NDA PROTECTED
+                </h3>
+                <p className="text-[10px] text-muted/80 leading-relaxed font-sans">
+                  This deployment represents proprietary enterprise software engineered for TechPlek Technologies. Public endpoints and active code repositories are restricted under non-disclosure agreements to preserve commercial intellectual property.
+                </p>
+              </div>
+
+              <div className="w-full border-t border-border/40 pt-4 max-w-xs space-y-1.5 text-left text-[9px] text-muted/40 font-mono">
+                <div className="flex justify-between">
+                  <span>SECURITY_STATUS:</span>
+                  <span className="text-red-400">RESTRICTED</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>PROVIDER:</span>
+                  <span className="text-foreground">TechPlek Inc.</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>CLEARANCE_LVL:</span>
+                  <span className="text-foreground">L3_CONFIDENTIAL</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>CIPHER:</span>
+                  <span className="text-foreground">AES-256-GCM</span>
+                </div>
               </div>
             </div>
           )}
