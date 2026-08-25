@@ -1,38 +1,29 @@
 const year = new Date().getFullYear()
 
+const links = [
+  { label: "GitHub", href: "https://github.com/hritikS0" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/hritik-sharma-91336430b/" },
+  { label: "Résumé", href: "/resume-hritik.pdf" },
+]
+
 export function Footer() {
   return (
-    <footer className="border-t border-border">
-      <div className="mx-auto max-w-6xl px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-sm text-muted">
-          &copy; {year} Hritik Sharma. All rights reserved.
-        </p>
+    <footer className="border-t border-line">
+      <div className="mx-auto flex max-w-3xl flex-col gap-4 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
+        <p className="meta text-muted">© {year} Hritik Sharma</p>
 
         <div className="flex items-center gap-6">
-          <a
-            href="https://github.com/hritikS0"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-muted hover:text-foreground transition-colors"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://linkedin.com/in/hritik-sharma"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-muted hover:text-foreground transition-colors"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="/resume-hritik.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-muted hover:text-foreground transition-colors"
-          >
-            Resume
-          </a>
+          {links.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[0.8125rem] text-muted transition-colors hover:text-foreground"
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
       </div>
     </footer>

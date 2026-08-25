@@ -1,91 +1,118 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Raw palette. Redefined under .dark, so every Tailwind utility that maps to a
+   token below follows the theme automatically — no dark: variant needed for
+   colors, only for the rare case where the *relationship* changes. */
+:root {
+  --bg: #FAFAF9;
+  --surface: #FFFFFF;
+  --fg: #1C1B1A;
+  --muted: #6B6866;
+  --line: #E7E5E3;
+  --accent: #B4552D;
+}
+
+.dark {
+  --bg: #0C0C0C;
+  --surface: #141312;
+  --fg: #EDEBE8;
+  --muted: #8F8C88;
+  --line: #232220;
+  --accent: #D97A4E;
+}
+
 @theme inline {
-  --color-background: #04060B;
-  --color-foreground: #F5F5F5;
-  --color-accent: #3B82F6;
-  --color-muted: #8B8F96;
-  --color-border: #1A1D24;
-  --color-surface: #0A0D14;
-  --color-surface-hover: #12151E;
+  --color-background: var(--bg);
+  --color-surface: var(--surface);
+  --color-foreground: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --animate-twinkle: twinkle 6s ease-in-out infinite alternate;
-  --animate-twinkle-slow: twinkle 10s ease-in-out infinite alternate-reverse;
-  --animate-streaks: streaks 40s linear infinite;
-  --animate-streaks-slow: streaks 80s linear infinite;
-  --animate-glitch: glitch 0.2s ease-in-out;
-
-  @keyframes twinkle {
-    0% { opacity: 0.15; transform: scale(0.95); }
-    100% { opacity: 0.5; transform: scale(1.05); }
-  }
-  @keyframes streaks {
-    0% { background-position: 0 0; }
-    100% { background-position: -4000px 4000px; }
-  }
-  @keyframes glitch {
-    0% { transform: translate(0); text-shadow: none; }
-    20% { transform: translate(-2px, 1px); text-shadow: -2px 0 rgba(255,0,80,0.5), 2px 0 rgba(0,200,255,0.5); }
-    40% { transform: translate(2px, -1px); text-shadow: 2px 0 rgba(255,0,80,0.5), -2px 0 rgba(0,200,255,0.5); }
-    60% { transform: translate(-1px, 2px); text-shadow: -1px 0 rgba(255,0,80,0.5), 1px 0 rgba(0,200,255,0.5); }
-    80% { transform: translate(1px, -2px); text-shadow: 1px 0 rgba(0,200,255,0.5), -1px 0 rgba(255,0,80,0.5); }
-    100% { transform: translate(0); text-shadow: none; }
-  }
+  --font-serif: var(--font-instrument-serif);
 }
 
 @layer base {
-  * {
-    border-color: var(--color-border);
-  }
-
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    font-family: var(--font-sans);
-    background-image:
-      linear-gradient(rgba(59, 130, 246, 0.012) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59, 130, 246, 0.012) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.025;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 300px 300px;
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-geist-sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background-color: var(--color-accent);
-    color: white;
+    background-color: var(--accent);
+    color: var(--bg);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 10px;
   }
 
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: var(--bg);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--color-border);
-    border-radius: 3px;
+    background: var(--line);
+    border: 3px solid var(--bg);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted);
+  }
+}
+
+@layer components {
+  /* Display type. Instrument Serif ships one weight, so emphasis comes from
+     size and leading rather than boldness. */
+  .display {
+    font-family: var(--font-instrument-serif), Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.08;
+  }
+
+  /* Metadata only: dates, years, tech names, section eyebrows. */
+  .meta {
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* Inline links inside prose. Underline sits off the baseline so descenders
+     stay legible. */
+  .link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
+    transition: text-decoration-color 150ms ease;
+  }
+
+  .link:hover {
+    text-decoration-color: var(--accent);
   }
 }
 
@@ -96,9 +123,59 @@
     animation-delay: -1ms !important;
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
-    background-attachment: initial !important;
     scroll-behavior: auto !important;
     transition-delay: 0s !important;
     transition-duration: 0s !important;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Theme switch
+   The new theme is revealed as a circle expanding from the toggle button.
+   Origin and radius are set on <html> in JS before the transition starts.
+   --------------------------------------------------------------------------- */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  /* Kill the default crossfade — the clip-path does all the work, and letting
+     both run makes the wipe look muddy. */
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Old theme sits still underneath while the new one is cut in over it. */
+::view-transition-old(root) {
+  z-index: 0;
+}
+
+::view-transition-new(root) {
+  z-index: 1;
+  animation: theme-reveal 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(
+      0 at var(--theme-origin-x, 100%) var(--theme-origin-y, 0)
+    );
+  }
+  to {
+    clip-path: circle(
+      var(--theme-origin-r, 150vmax) at var(--theme-origin-x, 100%)
+        var(--theme-origin-y, 0)
+    );
+  }
+}
+
+/* Firefox has no View Transitions yet. Crossfade the tokens instead, scoped to
+   the ~400ms the switch is happening so it never interferes with hover. */
+@supports not (view-transition-name: none) {
+  html.theme-switching * {
+    transition:
+      background-color 380ms ease,
+      border-color 380ms ease,
+      color 380ms ease,
+      text-decoration-color 380ms ease !important;
+  }
+}
+

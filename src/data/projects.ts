@@ -1,6 +1,10 @@
 export interface Project {
   id: string
   title: string
+  /** One line for the index list. Keep it scannable — depth lives on the page. */
+  tagline: string
+  /** Where the work happened. Shown as the eyebrow on both list and detail. */
+  context: string
   description: string
   problem: string
   solution: string
@@ -9,6 +13,10 @@ export interface Project {
   architecture: string
   performance: string
   lessons: string
+  /** Source is under NDA — the detail page says so instead of showing no links. */
+  confidential?: boolean
+  /** Optional screen capture shown on the detail page. */
+  media?: { src: string; caption: string }
   live?: string
   code?: string
 }
@@ -17,6 +25,9 @@ export const projects: Project[] = [
   {
     id: "toolstack-ai",
     title: "ToolStackAI",
+    tagline:
+      "An AI developer workspace with response streaming, RAG document search, and a debugging assistant.",
+    context: "Personal project",
     description:
       "AI-powered developer workspace integrating real-time streaming, local document analysis via RAG, and an automated code debugging assistant.",
     problem:
@@ -38,6 +49,9 @@ export const projects: Project[] = [
   {
     id: "android-home-lab",
     title: "Android Home Lab Server",
+    tagline:
+      "A retired Android phone turned into a zero-cost, self-hosted Linux server running persistent Node services.",
+    context: "Personal project",
     description:
       "Repurposed legacy Android hardware into an ultra-low-power, self-hosted Linux server environment using Termux to host persistent node services.",
     problem:
@@ -62,11 +76,18 @@ export const projects: Project[] = [
       "Drove localized infrastructure costs down to zero. Shifting code-to-production deployment execution speeds from minutes to under 45 seconds using PM2 runners.",
     lessons:
       "Learned that mobile hardware battery management systems can throttle CPU frequencies under persistent node server loads. Solved by configuring custom wake-locks and background battery optimization overrides in Android OS.",
+    media: {
+      src: "/media/homelab-preview.mov",
+      caption: "Live telemetry from the running node.",
+    },
     code: "https://github.com/hritikS0/homelab-music",
   },
   {
     id: "shailshuta-logistics",
     title: "Shailshuta Logistics",
+    tagline:
+      "A logistics platform handling shipment tracking, validation, and role-scoped admin operations.",
+    context: "Client work · TechPlek Technologies",
     description:
       "Full-stack logistics management platform for administrators and customers, driving coordinate tracking, shipment validation, and administrative operations.",
     problem:
@@ -82,10 +103,14 @@ export const projects: Project[] = [
       "Reduced average shipment coordinate synchronization delay to sub-200ms ranges. Decreased operations tracking overhead by 40% while securing critical endpoints.",
     lessons:
       "Learned that complex database joins slow down admin dashboards. Handled by writing optimized Prisma selects and caching static courier lookup profiles.",
+    confidential: true,
   },
   {
     id: "pdooh-platform",
     title: "PDOOH Platform",
+    tagline:
+      "A digital signage network orchestrating media playlists across 50+ remote Raspberry Pi players.",
+    context: "Client work · TechPlek Technologies",
     description:
       "Digital out-of-home advertising playout network orchestrating real-time media playlist streams and automated Raspberry Pi device provisioning.",
     problem:
@@ -101,5 +126,10 @@ export const projects: Project[] = [
       "Eliminated rendering stutters and layout leaks on signage playout loops. Achieved a 99.98% remote device startup reliability rate.",
     lessons:
       "Experienced memory bloating on low-memory Raspberry Pi players from continuous media looping. Resolved by scheduling automatic buffer clears and garbage collection.",
+    confidential: true,
   },
 ]
+
+export function getProject(id: string) {
+  return projects.find((project) => project.id === id)
+}

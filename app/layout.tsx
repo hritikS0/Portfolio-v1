@@ -1,32 +1,48 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Instrument_Serif } from "next/font/google"
+// Self-hosted from the `geist` package rather than next/font/google — the font
+// files ship in node_modules, so there's no build-time network fetch and no
+// third-party request at runtime.
+import { GeistSans } from "geist/font/sans"
+import { GeistMono } from "geist/font/mono"
 import "./globals.css"
 import { Navbar } from "@/src/components/layout/navbar"
 import { Footer } from "@/src/components/layout/footer"
-import { ModeProvider } from "@/src/components/providers/mode-provider"
 import { AnimationProvider } from "@/src/components/providers/animation-provider"
-import { Background } from "@/src/components/ui/background"
-import { CursorTrail } from "@/src/components/ui/cursor-trail"
+import {
+  ThemeProvider,
+  themeScript,
+} from "@/src/components/providers/theme-provider"
 import { Analytics } from "@vercel/analytics/react"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// One weight is all Instrument Serif ships, and all the display type needs.
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-instrument-serif",
 })
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
+const description =
+  "Full-stack engineer building scalable production systems with TypeScript, React, Node.js and PostgreSQL."
 
 export const metadata: Metadata = {
-  title: "Hritik Sharma — Full-Stack Developer",
-  description:
-    "MERN & PERN Stack Developer passionate about building clean, modern, and scalable web applications with TypeScript, React, Node.js, and PostgreSQL.",
+  metadataBase: new URL("https://hritiksharma.vercel.app"),
+  title: {
+    default: "Hritik Sharma — Full-Stack Engineer",
+    template: "%s — Hritik Sharma",
+  },
+  description,
   openGraph: {
-    title: "Hritik Sharma — Full-Stack Developer",
-    description:
-      "MERN & PERN Stack Developer passionate about building clean, modern, and scalable web applications with TypeScript, React, Node.js, and PostgreSQL.",
+    title: "Hritik Sharma — Full-Stack Engineer",
+    description,
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hritik Sharma — Full-Stack Engineer",
+    description,
   },
 }
 
@@ -38,16 +54,22 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+      // globals.css sets `scroll-behavior: smooth`; this tells Next's router to
+      // account for it instead of warning about a conflicting scroll restore.
+      data-scroll-behavior="smooth"
+      className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable}`}
     >
-      <body className="bg-background text-foreground antialiased">
-        <ModeProvider>
+      <head>
+        {/* Must run before first paint, or dark-mode visitors get a white flash. */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body>
+        <ThemeProvider>
           <AnimationProvider>
-            <Background />
-            <CursorTrail />
             <a
               href="#main-content"
-              className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-md"
+              className="sr-only focus:not-sr-only focus:fixed focus:left-6 focus:top-6 focus:z-[200] focus:rounded focus:bg-foreground focus:px-4 focus:py-2 focus:text-sm focus:text-background"
             >
               Skip to content
             </a>
@@ -56,7 +78,7 @@ export default function RootLayout({
             <Footer />
           </AnimationProvider>
           <Analytics />
-        </ModeProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
